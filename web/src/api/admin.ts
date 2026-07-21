@@ -72,3 +72,29 @@ export async function uploadDishImage(id: number, file: File): Promise<string> {
   })
   return data.imageUrl
 }
+
+export interface DailyMenuEntry {
+  dishId: number
+  name: string
+  imageUrl: string
+  category: string
+  selected: boolean
+  stockTotal: number
+}
+
+export interface DailyMenuAdmin {
+  date: string
+  entries: DailyMenuEntry[]
+}
+
+export async function fetchDailyMenuAdmin(date: string): Promise<DailyMenuAdmin> {
+  const { data } = await api.get<DailyMenuAdmin>(`/admin/menus/${date}`)
+  return data
+}
+
+export async function saveDailyMenu(
+  date: string,
+  entries: { dishId: number; selected: boolean; stockTotal: number }[],
+): Promise<void> {
+  await api.put(`/admin/menus/${date}`, { entries })
+}

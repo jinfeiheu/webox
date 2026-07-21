@@ -26,14 +26,14 @@ public interface DailyMenuRepository extends JpaRepository<DailyMenu, Long>, Jpa
      * 0 otherwise.  The caller uses the zero return to detect oversell within the same DB
      * transaction without explicit locking (PRD §5.1).
      */
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query("UPDATE DailyMenu dm SET dm.stockRemaining = dm.stockRemaining - :qty "
             + "WHERE dm.dish.id = :dishId AND dm.menuDate = :date AND dm.stockRemaining >= :qty")
     int decrementStock(@Param("dishId") Long dishId, @Param("date") LocalDate date,
                        @Param("qty") int qty);
 
     /** Stock restore on order cancel (PRD §5.1) — simpler: no WHERE guard needed. */
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query("UPDATE DailyMenu dm SET dm.stockRemaining = dm.stockRemaining + :qty "
             + "WHERE dm.dish.id = :dishId AND dm.menuDate = :date")
     int incrementStock(@Param("dishId") Long dishId, @Param("date") LocalDate date,

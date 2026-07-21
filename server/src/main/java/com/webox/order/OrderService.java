@@ -223,7 +223,8 @@ public class OrderService {
         return OrderView.of(order);
     }
 
-    /** Cancel (PRD §3.4) + T17 stock restore: approved per-dish stock back + SSE broadcast. */
+    /** Cancel (PRD §3.4) + T17 stock restore: restore stock FIRST so the @Modifying
+     *  clearAutomatically does not erase the order's status change. */
     @Transactional
     public OrderView cancelOrder(Long userId, Long orderId) {
         Order order = orderRepository.findByIdAndUserId(orderId, userId)
@@ -231,10 +232,10 @@ public class OrderService {
         if (order.getStatus() != OrderStatus.PENDING) {
             throw new BizException(ErrorCode.ORDER_NOT_CANCELLABLE);
         }
-        order.setStatus(OrderStatus.CANCELLED);
-        orderRepository.save(order);
 
-        // Restore stock for every line item (PRD §5.1).
+        // Restore stock for every line item BEFORE changing the order status,
+        // because the @Modifying(clearAutomatically) on incrementStock would
+        // otherwise clear the persistence context and discard the save() below.
         LocalDate orderDate = order.getDeliveryDate();
         for (OrderItem item : order.getItems()) {
             dailyMenuRepository.incrementStock(item.getDishId(), orderDate, item.getQty());
@@ -245,6 +246,9 @@ public class OrderService {
                         item.getDishId(), orderDate, dm.getStockRemaining()));
             }
         }
+
+        order.setStatus(OrderStatus.CANCELLED);
+        orderRepository.save(order);
         Objects.requireNonNull(cacheManager.getCache("menuItems")).evict(orderDate);
         return OrderView.of(order);
     }

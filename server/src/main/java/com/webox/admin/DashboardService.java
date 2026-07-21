@@ -63,7 +63,7 @@ public class DashboardService {
                 today.minusDays(7), today);
         List<DashboardView.TrendPoint> trend = trendRaw.stream()
                 .map(row -> new DashboardView.TrendPoint(
-                        ((java.sql.Date) row[0]).toLocalDate(),
+                        ((LocalDate) row[0]),
                         ((Number) row[1]).intValue(),
                         Moneys.of((BigDecimal) row[2])))
                 .toList();

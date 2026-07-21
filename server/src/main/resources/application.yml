@@ -33,3 +33,9 @@ app:
   upload:
     # Dish image uploads land here and are served from /images/dishes/** (see WebConfig).
     dir: ${user.dir}/uploads
+  llm:
+    # OpenAI-compatible endpoint.  Set LLM_API_KEY to a real key; without it the AI
+    # feature shows a friendly "not configured" message.
+    base-url: ${LLM_BASE_URL:https://api.openai.com/v1}
+    api-key: ${LLM_API_KEY:changeme}
+    model: ${LLM_MODEL:gpt-4o-mini}

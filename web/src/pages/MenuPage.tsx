@@ -3,6 +3,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { fetchMenu, searchMenu } from '../api/menu'
 import { fetchPreferences } from '../api/preferences'
 import DishCard from '../components/DishCard'
+import AiPanel from '../components/AiPanel'
 import { CATEGORIES } from '../lib/constants'
 import { SEARCH_MAX } from '../lib/validators'
 import { useAuthStore } from '../stores/authStore'
@@ -144,6 +145,10 @@ export default function MenuPage() {
       {!isLoading && !isError && items.length === 0 && (
         <p className="py-16 text-center text-sm text-gray-400">No dishes match your search.</p>
       )}
+
+      <div className="mb-6">
+        <AiPanel />
+      </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {visibleItems.map((dish) => (

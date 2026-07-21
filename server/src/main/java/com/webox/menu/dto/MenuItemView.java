@@ -20,9 +20,11 @@ public record MenuItemView(
         SpiceLevel spiceLevel,
         List<Allergen> allergens,
         String imageUrl,
-        int stockRemaining) {
+        int stockRemaining,
+        /** True when the dish has required customization — then the card's Add leads to the detail page. */
+        boolean hasRequiredOptions) {
 
-    public static MenuItemView of(DailyMenu dailyMenu) {
+    public static MenuItemView of(DailyMenu dailyMenu, boolean hasRequiredOptions) {
         Dish dish = dailyMenu.getDish();
         return new MenuItemView(
                 dish.getId(),
@@ -34,6 +36,7 @@ public record MenuItemView(
                 dish.getSpiceLevel(),
                 List.copyOf(dish.getAllergens()),
                 dish.getImageUrl(),
-                dailyMenu.getStockRemaining());
+                dailyMenu.getStockRemaining(),
+                hasRequiredOptions);
     }
 }

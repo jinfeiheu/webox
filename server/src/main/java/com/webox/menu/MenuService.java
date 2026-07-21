@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class MenuService {
@@ -20,21 +22,23 @@ public class MenuService {
 
     private final DailyMenuRepository dailyMenuRepository;
     private final DishRepository dishRepository;
+    private final OptionGroupRepository optionGroupRepository;
 
-    public MenuService(DailyMenuRepository dailyMenuRepository, DishRepository dishRepository) {
+    public MenuService(DailyMenuRepository dailyMenuRepository, DishRepository dishRepository,
+                       OptionGroupRepository optionGroupRepository) {
         this.dailyMenuRepository = dailyMenuRepository;
         this.dishRepository = dishRepository;
+        this.optionGroupRepository = optionGroupRepository;
     }
 
     /** Today's (or the requested day's) menu. Cached — hot read path during the 9:30-10:00 peak. */
     @Cacheable(cacheNames = "menuItems", key = "#date")
     @Transactional(readOnly = true)
     public MenuResponse getMenu(LocalDate date) {
-        List<MenuItemView> items = dailyMenuRepository.findByMenuDateWithDish(date).stream()
+        List<DailyMenu> dailyMenus = dailyMenuRepository.findByMenuDateWithDish(date).stream()
                 .filter(dm -> dm.getDish().isActive())
-                .map(MenuItemView::of)
                 .toList();
-        return new MenuResponse(date, items);
+        return new MenuResponse(date, toViews(dailyMenus));
     }
 
     /** Keyword + multi-category search within a day's menu (parameterized, see MenuSpecs). */
@@ -45,11 +49,18 @@ public class MenuService {
             throw new BizException(ErrorCode.VALIDATION_ERROR,
                     "Search keyword must be at most " + SEARCH_KEYWORD_MAX + " characters.");
         }
-        List<MenuItemView> items = dailyMenuRepository
-                .findAll(MenuSpecs.menuSearch(date, q, categories)).stream()
-                .map(MenuItemView::of)
+        List<DailyMenu> dailyMenus = dailyMenuRepository.findAll(MenuSpecs.menuSearch(date, q, categories));
+        return new MenuResponse(date, toViews(dailyMenus));
+    }
+
+    private List<MenuItemView> toViews(List<DailyMenu> dailyMenus) {
+        List<Long> dishIds = dailyMenus.stream().map(dm -> dm.getDish().getId()).toList();
+        Set<Long> withRequired = dishIds.isEmpty()
+                ? Set.of()
+                : new HashSet<>(optionGroupRepository.findDishIdsWithRequiredGroups(dishIds));
+        return dailyMenus.stream()
+                .map(dm -> MenuItemView.of(dm, withRequired.contains(dm.getDish().getId())))
                 .toList();
-        return new MenuResponse(date, items);
     }
 
     @Cacheable(cacheNames = "dishDetail", key = "#dishId")

@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: webox-server
+  datasource:
+    url: jdbc:mysql://localhost:3306/webox?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: webox123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  jackson:
+    generator:
+      write-bigdecimal-as-plain: true
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          max-age: 3600
+
+app:
+  jwt:
+    # 本地开发默认值；生产用环境变量 JWT_SECRET 覆盖（见 README）
+    secret: ${JWT_SECRET:webox-dev-secret-key-please-override-in-prod-0123456789abcdef}
+    ttl-hours: 12

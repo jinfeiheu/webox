@@ -1,0 +1,22 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: webox-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: webox123
+      MYSQL_DATABASE: webox
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - webox-mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pwebox123"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  webox-mysql-data:

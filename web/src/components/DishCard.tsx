@@ -7,7 +7,7 @@ import { formatYuan } from '../lib/money'
 import { useAddToCart } from '../hooks/useAddToCart'
 
 /** One menu card (PRD §3.2): image, name, price to the cent, cuisine tag, stock state. */
-const DishCard = memo(function DishCard({ dish }: { dish: MenuItem }) {
+const DishCard = memo(function DishCard({ dish, highlighted }: { dish: MenuItem; highlighted?: boolean }) {
   const navigate = useNavigate()
   const { requestAdd, adding, dialogNode } = useAddToCart()
   const { data: cart } = useQuery({ queryKey: ['cart'], queryFn: fetchCart })
@@ -46,6 +46,11 @@ const DishCard = memo(function DishCard({ dish }: { dish: MenuItem }) {
             className="font-medium text-gray-900 hover:text-orange-600"
           >
             {dish.name}
+            {highlighted && (
+              <span className="ml-2 rounded-full bg-orange-100 px-1.5 py-0.5 text-xs font-medium text-orange-700">
+                For you
+              </span>
+            )}
           </Link>
           <span className="shrink-0 font-semibold text-orange-600">{formatYuan(dish.price)}</span>
         </div>

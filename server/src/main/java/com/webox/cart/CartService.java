@@ -1,6 +1,7 @@
 package com.webox.cart;
 
 import com.webox.auth.UserRepository;
+import com.webox.common.enums.Allergen;
 import com.webox.common.option.SelectedOption;
 import com.webox.cart.dto.AddCartItemRequest;
 import com.webox.cart.dto.AddCartItemResponse;
@@ -12,6 +13,8 @@ import com.webox.menu.Dish;
 import com.webox.menu.DishRepository;
 import com.webox.menu.OptionGroup;
 import com.webox.menu.OptionItem;
+import com.webox.preference.PreferenceRepository;
+import com.webox.preference.UserPreference;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,12 +35,14 @@ public class CartService {
     private final CartItemRepository cartItemRepository;
     private final DishRepository dishRepository;
     private final UserRepository userRepository;
+    private final PreferenceRepository preferenceRepository;
 
     public CartService(CartItemRepository cartItemRepository, DishRepository dishRepository,
-                       UserRepository userRepository) {
+                       UserRepository userRepository, PreferenceRepository preferenceRepository) {
         this.cartItemRepository = cartItemRepository;
         this.dishRepository = dishRepository;
         this.userRepository = userRepository;
+        this.preferenceRepository = preferenceRepository;
     }
 
     @Transactional(readOnly = true)
@@ -56,6 +61,13 @@ public class CartService {
         Dish dish = dishRepository.findById(request.dishId())
                 .filter(Dish::isActive)
                 .orElseThrow(() -> new BizException(ErrorCode.NOT_FOUND, "Dish not found or unavailable."));
+
+        // Allergen warning (PRD §4.1): if the dish hits a flagged allergen and the employee has
+        // not confirmed, do NOT save — return the match so the UI can prompt. Warn, never filter.
+        List<Allergen> matched = matchedAllergens(userId, dish);
+        if (!matched.isEmpty() && !Boolean.TRUE.equals(request.confirmed())) {
+            return new AddCartItemResponse(null, matched);
+        }
 
         List<SelectedOption> snapshot = resolveOptions(dish, request.selectedOptions());
         String optionsHash = optionsHash(request.dishId(), snapshot);
@@ -76,9 +88,7 @@ public class CartService {
         }
         cartItemRepository.save(item);
 
-        // Allergen matching against the employee's flags is wired in T11 (preferences);
-        // with no preferences configured the match set is always empty (PRD §4.1: warn, never filter).
-        return new AddCartItemResponse(CartItemView.of(item), List.of());
+        return new AddCartItemResponse(CartItemView.of(item), matched);
     }
 
     @Transactional
@@ -101,6 +111,14 @@ public class CartService {
     @Transactional
     public void clear(Long userId) {
         cartItemRepository.deleteByUserId(userId);
+    }
+
+    /** Allergens the dish contains that the employee has flagged (empty when no preferences). */
+    private List<Allergen> matchedAllergens(Long userId, Dish dish) {
+        return preferenceRepository.findById(userId)
+                .map(UserPreference::getAllergens)
+                .map(flags -> dish.getAllergens().stream().filter(flags::contains).toList())
+                .orElse(List.of());
     }
 
     /** Validates selections against the dish's groups and returns an immutable snapshot. */

@@ -1,18 +1,21 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { fetchMenu, searchMenu } from '../api/menu'
+import { fetchPreferences } from '../api/preferences'
 import DishCard from '../components/DishCard'
+import { CATEGORIES } from '../lib/constants'
 import { SEARCH_MAX } from '../lib/validators'
 
-const CATEGORIES = ['Chinese', 'Western', 'Japanese', 'Light Meal', 'Korean', 'Southeast Asian']
 const PAGE_SIZE = 12
 
-/** Home page (PRD §3.2): today's menu with multi-category filter, debounced search, pagination. */
+/** Home page (PRD §3.2/§4.1): today's menu with multi-category filter, debounced search,
+ *  pagination, and a "For You" switch that boosts preferred cuisines + highlights spice matches. */
 export default function MenuPage() {
   const [keyword, setKeyword] = useState('')
   const [debouncedKeyword, setDebouncedKeyword] = useState('')
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
+  const [forYou, setForYou] = useState(false)
 
   // 300ms debounce — the 9:30-10:00 peak must not hammer the search API per keystroke.
   useEffect(() => {
@@ -31,12 +34,39 @@ export default function MenuPage() {
         : fetchMenu(),
   })
 
+  // Preferences only load once the employee opts into "For You" (cached afterwards).
+  const { data: prefs } = useQuery({
+    queryKey: ['preferences'],
+    queryFn: fetchPreferences,
+    enabled: forYou,
+  })
+
   // Reset pagination whenever the result set changes.
   useEffect(() => {
     setVisibleCount(PAGE_SIZE)
   }, [queryKey.join('|')])
 
-  const items = useMemo(() => data?.items ?? [], [data])
+  const rawItems = useMemo(() => data?.items ?? [], [data])
+
+  // "For You": stable-sort preferred cuisines to the front; mark spice matches for highlight.
+  const { items, highlightSet } = useMemo(() => {
+    if (!forYou || !prefs) {
+      return { items: rawItems, highlightSet: new Set<number>() }
+    }
+    const preferred = new Set(prefs.cuisines)
+    const sorted = [...rawItems].sort((a, b) => {
+      const pa = preferred.has(a.category) ? 0 : 1
+      const pb = preferred.has(b.category) ? 0 : 1
+      return pa - pb
+    })
+    const highlights = new Set<number>(
+      prefs.spiceLevel
+        ? sorted.filter((i) => i.spiceLevel === prefs.spiceLevel).map((i) => i.dishId)
+        : [],
+    )
+    return { items: sorted, highlightSet: highlights }
+  }, [rawItems, forYou, prefs])
+
   const visibleItems = items.slice(0, visibleCount)
 
   const toggleCategory = (category: string) => {
@@ -49,14 +79,25 @@ export default function MenuPage() {
     <div>
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="text-2xl font-semibold text-gray-900">Today's Menu</h1>
-        <input
-          type="search"
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
-          maxLength={SEARCH_MAX}
-          placeholder="Search dishes…"
-          className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none sm:w-64"
-        />
+        <div className="flex items-center gap-3">
+          <label className="flex cursor-pointer items-center gap-2 text-sm text-gray-600">
+            <input
+              type="checkbox"
+              checked={forYou}
+              onChange={(e) => setForYou(e.target.checked)}
+              className="h-4 w-4 accent-orange-600"
+            />
+            For You
+          </label>
+          <input
+            type="search"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            maxLength={SEARCH_MAX}
+            placeholder="Search dishes…"
+            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none sm:w-64"
+          />
+        </div>
       </div>
 
       <div className="mb-5 flex flex-wrap gap-2">
@@ -90,7 +131,7 @@ export default function MenuPage() {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {visibleItems.map((dish) => (
-          <DishCard key={dish.dishId} dish={dish} />
+          <DishCard key={dish.dishId} dish={dish} highlighted={highlightSet.has(dish.dishId)} />
         ))}
       </div>
 

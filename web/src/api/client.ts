@@ -3,6 +3,13 @@ import type { AxiosError } from 'axios'
 import toast from 'react-hot-toast'
 import { useAuthStore } from '../stores/authStore'
 
+// Callers that render errors inline (e.g. login/register forms) pass skipErrorToast: true.
+declare module 'axios' {
+  interface AxiosRequestConfig {
+    skipErrorToast?: boolean
+  }
+}
+
 /** Matches the backend uniform error body (GlobalExceptionHandler). */
 export interface ApiErrorBody {
   code: string
@@ -32,7 +39,7 @@ api.interceptors.response.use(
       if (!window.location.pathname.startsWith('/login')) {
         window.location.href = '/login'
       }
-    } else {
+    } else if (!error.config?.skipErrorToast) {
       const message = error.response?.data?.message ?? 'Network error. Please try again.'
       toast.error(message)
     }

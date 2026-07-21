@@ -40,6 +40,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(ApiError.of(ErrorCode.VALIDATION_ERROR, e.getMessage()));
     }
 
+    @ExceptionHandler(org.springframework.http.converter.HttpMessageNotReadableException.class)
+    public ResponseEntity<ApiError> handleUnreadableBody(
+            org.springframework.http.converter.HttpMessageNotReadableException e) {
+        // Never echo Spring's internal message — it leaks method signatures.
+        return ResponseEntity.badRequest()
+                .body(ApiError.of(ErrorCode.VALIDATION_ERROR, "Malformed request body."));
+    }
+
     @ExceptionHandler(NoResourceFoundException.class)
     public ResponseEntity<ApiError> handleNotFound(NoResourceFoundException e) {
         return ResponseEntity.status(ErrorCode.NOT_FOUND.getStatus()).body(ApiError.of(ErrorCode.NOT_FOUND));

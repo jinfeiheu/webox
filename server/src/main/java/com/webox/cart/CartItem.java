@@ -1,5 +1,8 @@
 package com.webox.cart;
 
+import com.webox.common.option.SelectedOption;
+import com.webox.common.option.SelectedOptionsConverter;
+
 import com.webox.auth.User;
 import com.webox.menu.Dish;
 import jakarta.persistence.Column;

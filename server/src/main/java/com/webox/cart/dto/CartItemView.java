@@ -1,7 +1,7 @@
 package com.webox.cart.dto;
 
 import com.webox.cart.CartItem;
-import com.webox.cart.SelectedOption;
+import com.webox.common.option.SelectedOption;
 import com.webox.common.enums.Category;
 import com.webox.common.money.Moneys;
 import com.webox.menu.Dish;

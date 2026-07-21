@@ -1,6 +1,7 @@
 package com.webox.cart;
 
 import com.webox.auth.UserRepository;
+import com.webox.common.option.SelectedOption;
 import com.webox.cart.dto.AddCartItemRequest;
 import com.webox.cart.dto.AddCartItemResponse;
 import com.webox.cart.dto.CartItemView;

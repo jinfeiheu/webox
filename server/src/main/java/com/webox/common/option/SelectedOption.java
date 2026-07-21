@@ -1,4 +1,4 @@
-package com.webox.cart;
+package com.webox.common.option;
 
 import java.math.BigDecimal;
 

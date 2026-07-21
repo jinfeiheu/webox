@@ -1,4 +1,4 @@
-package com.webox.cart;
+package com.webox.common.option;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

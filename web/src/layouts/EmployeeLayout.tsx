@@ -1,4 +1,6 @@
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import { fetchCart } from '../api/cart'
 import { isAdmin, useAuthStore } from '../stores/authStore'
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -10,6 +12,8 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
 export default function EmployeeLayout() {
   const { user, logout } = useAuthStore()
   const navigate = useNavigate()
+  const { data: cart } = useQuery({ queryKey: ['cart'], queryFn: fetchCart })
+  const cartCount = cart?.totalQty ?? 0
 
   const onLogout = () => {
     logout()
@@ -29,6 +33,11 @@ export default function EmployeeLayout() {
             </NavLink>
             <NavLink to="/cart" className={navLinkClass}>
               Cart
+              {cartCount > 0 && (
+                <span className="ml-1 rounded-full bg-orange-600 px-1.5 py-0.5 text-xs text-white">
+                  {cartCount}
+                </span>
+              )}
             </NavLink>
             <NavLink to="/orders" className={navLinkClass}>
               My Orders

@@ -1,6 +1,8 @@
 import { memo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
 import type { MenuItem } from '../api/menu'
+import { fetchCart } from '../api/cart'
 import { formatYuan } from '../lib/money'
 import { useAddToCart } from '../hooks/useAddToCart'
 
@@ -8,7 +10,11 @@ import { useAddToCart } from '../hooks/useAddToCart'
 const DishCard = memo(function DishCard({ dish }: { dish: MenuItem }) {
   const navigate = useNavigate()
   const { requestAdd, adding, dialogNode } = useAddToCart()
+  const { data: cart } = useQuery({ queryKey: ['cart'], queryFn: fetchCart })
   const soldOut = dish.stockRemaining === 0
+  // PRD §4.2: once the cart holds 5 items, the Add buttons on the menu page disable too.
+  const cartFull = (cart?.totalQty ?? 0) >= 5
+  const addDisabled = soldOut || adding || cartFull
 
   const onAdd = () => {
     if (dish.hasRequiredOptions) {
@@ -49,7 +55,8 @@ const DishCard = memo(function DishCard({ dish }: { dish: MenuItem }) {
           </span>
           <button
             onClick={onAdd}
-            disabled={soldOut || adding}
+            disabled={addDisabled}
+            title={cartFull && !soldOut ? 'An order can contain at most 5 items in total.' : undefined}
             className="rounded-md bg-orange-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-700 disabled:cursor-not-allowed disabled:bg-gray-300"
           >
             {soldOut ? 'Sold out' : dish.hasRequiredOptions ? 'Customize' : 'Add'}

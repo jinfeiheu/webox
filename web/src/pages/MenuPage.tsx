@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { fetchMenu, searchMenu } from '../api/menu'
 import { fetchPreferences } from '../api/preferences'
 import DishCard from '../components/DishCard'
 import { CATEGORIES } from '../lib/constants'
 import { SEARCH_MAX } from '../lib/validators'
+import { useAuthStore } from '../stores/authStore'
 
 const PAGE_SIZE = 12
 
@@ -16,6 +17,21 @@ export default function MenuPage() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
   const [forYou, setForYou] = useState(false)
+  const queryClient = useQueryClient()
+  const token = useAuthStore((s) => s.token)
+
+  // Real-time inventory: stock changes pushed by the server update the menu cache (PRD §5.1).
+  useEffect(() => {
+    if (!token) return
+    const es = new EventSource(`/api/inventory/stream?token=${token}`)
+    const onStock = () => {
+      queryClient.invalidateQueries({ queryKey: ['menu'] })
+      queryClient.invalidateQueries({ queryKey: ['cart'] })
+    }
+    es.addEventListener('stock', onStock)
+    es.onerror = () => {}  // reconnect is automatic
+    return () => es.close()
+  }, [token, queryClient])
 
   // 300ms debounce — the 9:30-10:00 peak must not hammer the search API per keystroke.
   useEffect(() => {

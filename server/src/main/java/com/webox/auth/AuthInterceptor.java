@@ -31,6 +31,13 @@ public class AuthInterceptor implements HandlerInterceptor {
             return true; // CORS preflight
         }
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
+        // Browser EventSource cannot attach custom headers — accept token as query param too.
+        if (header == null || !header.startsWith(BEARER_PREFIX)) {
+            String paramToken = request.getParameter("token");
+            if (paramToken != null) {
+                header = BEARER_PREFIX + paramToken;
+            }
+        }
         if (header == null || !header.startsWith(BEARER_PREFIX)) {
             throw new BizException(ErrorCode.UNAUTHORIZED);
         }

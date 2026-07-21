@@ -12,10 +12,15 @@ import com.webox.common.enums.MealSlot;
 import com.webox.common.enums.OrderStatus;
 import com.webox.common.money.Moneys;
 import com.webox.common.option.SelectedOption;
+import com.webox.inventory.InventoryEvent;
+import com.webox.inventory.InventorySseService;
+import com.webox.menu.DailyMenu;
+import com.webox.menu.DailyMenuRepository;
 import com.webox.menu.Dish;
 import com.webox.order.dto.CheckoutSummaryView;
 import com.webox.order.dto.OrderView;
 import com.webox.order.dto.PlaceOrderRequest;
+import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -26,7 +31,11 @@ import org.springframework.transaction.support.TransactionTemplate;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -46,16 +55,24 @@ public class OrderService {
     private final CartService cartService;
     private final UserRepository userRepository;
     private final OrderSlotResolver slotResolver;
+    private final DailyMenuRepository dailyMenuRepository;
+    private final CacheManager cacheManager;
+    private final InventorySseService sseService;
     private final TransactionTemplate newTxTemplate;
 
     public OrderService(OrderRepository orderRepository, CartItemRepository cartItemRepository,
                         CartService cartService, UserRepository userRepository,
-                        OrderSlotResolver slotResolver, PlatformTransactionManager txManager) {
+                        OrderSlotResolver slotResolver, DailyMenuRepository dailyMenuRepository,
+                        CacheManager cacheManager, InventorySseService sseService,
+                        PlatformTransactionManager txManager) {
         this.orderRepository = orderRepository;
         this.cartItemRepository = cartItemRepository;
         this.cartService = cartService;
         this.userRepository = userRepository;
         this.slotResolver = slotResolver;
+        this.dailyMenuRepository = dailyMenuRepository;
+        this.cacheManager = cacheManager;
+        this.sseService = sseService;
         // For the race-recovery reads below: they must run OUTSIDE the (doomed) current tx.
         this.newTxTemplate = new TransactionTemplate(txManager);
         this.newTxTemplate.setPropagationBehavior(
@@ -94,7 +111,31 @@ public class OrderService {
                     throw orderExists(existing);
                 });
 
-        // 5. Build the order with full line snapshots (current dish price + option extras).
+        // 5. Stock deduction — atomic per-dish decrement; any shortfall aborts the whole
+        //    order within the same transaction (PRD §5.1: no oversell).
+        Map<Long, Integer> qtyByDish = new LinkedHashMap<>();
+        for (CartItem ci : cartItems) {
+            qtyByDish.merge(ci.getDish().getId(), ci.getQty(), Integer::sum);
+        }
+        List<String> outOfStock = new ArrayList<>();
+        LocalDate orderDate = slot.date();
+        for (var entry : qtyByDish.entrySet()) {
+            int affected = dailyMenuRepository.decrementStock(
+                    entry.getKey(), orderDate, entry.getValue());
+            if (affected == 0) {
+                DailyMenu dm = dailyMenuRepository
+                        .findByMenuDateAndDishId(orderDate, entry.getKey()).orElse(null);
+                String name = dm != null ? dm.getDish().getName() : "Dish #" + entry.getKey();
+                int left = dm != null ? dm.getStockRemaining() : 0;
+                outOfStock.add(name + " (only " + left + " left)");
+            }
+        }
+        if (!outOfStock.isEmpty()) {
+            throw new BizException(ErrorCode.STOCK_INSUFFICIENT,
+                    ErrorCode.STOCK_INSUFFICIENT.getDefaultMessage(), outOfStock);
+        }
+
+        // 6. Build the order with full line snapshots (current dish price + option extras).
         Order order = new Order();
         order.setOrderNo(generateOrderNo());
         order.setUser(userRepository.getReferenceById(userId));
@@ -135,6 +176,17 @@ public class OrderService {
 
         // 7. Clear the cart only after the order is durably saved.
         cartItemRepository.deleteByUserId(userId);
+        // Stock changed — flush the stale menu snapshot in cache for this day.
+        Objects.requireNonNull(cacheManager.getCache("menuItems")).evict(slot.date());
+        // Push real-time inventory updates to every connected browser (PRD §5.1).
+        for (var entry : qtyByDish.entrySet()) {
+            DailyMenu dm = dailyMenuRepository
+                    .findByMenuDateAndDishId(orderDate, entry.getKey()).orElse(null);
+            if (dm != null) {
+                sseService.publish(new InventoryEvent(
+                        entry.getKey(), orderDate, dm.getStockRemaining()));
+            }
+        }
         return OrderView.of(order);
     }
 
@@ -171,7 +223,7 @@ public class OrderService {
         return OrderView.of(order);
     }
 
-    /** Only PENDING orders can be cancelled (PRD §3.4). Stock restore is layered on in T17. */
+    /** Cancel (PRD §3.4) + T17 stock restore: approved per-dish stock back + SSE broadcast. */
     @Transactional
     public OrderView cancelOrder(Long userId, Long orderId) {
         Order order = orderRepository.findByIdAndUserId(orderId, userId)
@@ -181,6 +233,19 @@ public class OrderService {
         }
         order.setStatus(OrderStatus.CANCELLED);
         orderRepository.save(order);
+
+        // Restore stock for every line item (PRD §5.1).
+        LocalDate orderDate = order.getDeliveryDate();
+        for (OrderItem item : order.getItems()) {
+            dailyMenuRepository.incrementStock(item.getDishId(), orderDate, item.getQty());
+            DailyMenu dm = dailyMenuRepository
+                    .findByMenuDateAndDishId(orderDate, item.getDishId()).orElse(null);
+            if (dm != null) {
+                sseService.publish(new InventoryEvent(
+                        item.getDishId(), orderDate, dm.getStockRemaining()));
+            }
+        }
+        Objects.requireNonNull(cacheManager.getCache("menuItems")).evict(orderDate);
         return OrderView.of(order);
     }
 

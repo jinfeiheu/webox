@@ -10,6 +10,8 @@ import com.webox.common.api.ErrorCode;
 import com.webox.common.enums.MealSlot;
 import com.webox.common.enums.OrderStatus;
 import com.webox.common.money.Moneys;
+import com.webox.inventory.InventorySseService;
+import com.webox.menu.DailyMenuRepository;
 import com.webox.menu.Dish;
 import com.webox.order.dto.OrderView;
 import com.webox.order.dto.PlaceOrderRequest;
@@ -19,6 +21,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import java.time.LocalDate;
@@ -28,6 +32,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -48,12 +53,17 @@ class OrderServiceTest {
     @Mock CartService cartService;
     @Mock UserRepository userRepository;
     @Mock OrderSlotResolver slotResolver;
+    @Mock DailyMenuRepository dailyMenuRepository;
+    @Mock CacheManager cacheManager;
+    @Mock InventorySseService sseService;
     @Mock PlatformTransactionManager txManager;
 
     @InjectMocks OrderService service;
 
     private Dish dish;
     private CartItem cartItem;
+
+    @Mock Cache menuItemsCache;
 
     @BeforeEach
     void setup() {
@@ -68,6 +78,12 @@ class OrderServiceTest {
         cartItem.setSelectedOptions(List.of());
     }
 
+    /** Only tests that actually place a successful order need stock/cache mocks wired. */
+    private void stockAndCacheSucceed() {
+        when(dailyMenuRepository.decrementStock(any(), any(), anyInt())).thenReturn(1);
+        when(cacheManager.getCache("menuItems")).thenReturn(menuItemsCache);
+    }
+
     private void slotResolvesToTodayLunch() {
         when(slotResolver.resolve(null, null))
                 .thenReturn(new OrderSlotResolver.SlotSelection(TODAY, MealSlot.LUNCH, false));
@@ -80,6 +96,7 @@ class OrderServiceTest {
     @Test
     void placeOrder_happyPath_createsOrderAndClearsCart() {
         slotResolvesToTodayLunch();
+        stockAndCacheSucceed();
         when(orderRepository.findByIdempotencyKey("k1")).thenReturn(Optional.empty());
         when(cartItemRepository.findByUserIdWithDish(USER_ID)).thenReturn(List.of(cartItem));
         when(orderRepository.findActiveBySlot(eq(USER_ID), eq(TODAY), eq(MealSlot.LUNCH), any()))
@@ -159,6 +176,8 @@ class OrderServiceTest {
         Order order = buildExistingOrder("WB20260721-X", OrderStatus.PENDING);
         when(orderRepository.findByIdAndUserId(order.getId(), USER_ID)).thenReturn(Optional.of(order));
         when(orderRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));
+        // T17: cancel restores stock + emits SSE + evicts cache.
+        when(cacheManager.getCache("menuItems")).thenReturn(menuItemsCache);
 
         OrderView result = service.cancelOrder(USER_ID, order.getId());
 

@@ -23,3 +23,6 @@ dist/
 
 # ---- local overrides ----
 application-local.yml
+
+# ---- tool artifacts ----
+.VSCodeCounter/

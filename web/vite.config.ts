@@ -9,6 +9,8 @@ export default defineConfig({
     proxy: {
       // dev: forward API calls to Spring Boot on :8080 (primary path; CORS is the fallback)
       '/api': 'http://localhost:8080',
+      // dish images are served by the backend's static resources
+      '/images': 'http://localhost:8080',
     },
   },
 })

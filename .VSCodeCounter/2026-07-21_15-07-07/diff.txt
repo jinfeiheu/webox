@@ -1,0 +1,187 @@
+Date : 2026-07-21 15:07:07
+Directory : /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web
+Total : 111 files,  1475 codes, -103 comments, -454 blanks, all 918 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          5 |      2,566 |          4 |          9 |      2,579 |
+| TypeScript JSX     |         23 |      1,179 |         34 |        118 |      1,331 |
+| TypeScript         |         10 |        303 |         24 |         57 |        384 |
+| Markdown           |          1 |         23 |          0 |         10 |         33 |
+| HTML               |          1 |         13 |          0 |          1 |         14 |
+| JSON with Comments |          1 |          7 |          0 |          1 |          8 |
+| PostCSS            |          1 |          4 |          5 |          3 |         12 |
+| YAML               |          1 |        -25 |         -1 |         -3 |        -29 |
+| XML                |          3 |        -56 |         -2 |         -5 |        -63 |
+| Java               |         65 |     -2,539 |       -167 |       -645 |     -3,351 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                                | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                   |        111 |      1,475 |       -103 |       -454 |        918 |
+| . (Files)                                                                                                                           |          9 |      2,621 |          7 |         23 |      2,651 |
+| ..                                                                                                                                  |         67 |     -2,645 |       -170 |       -654 |     -3,469 |
+| ../server                                                                                                                           |         67 |     -2,645 |       -170 |       -654 |     -3,469 |
+| ../server (Files)                                                                                                                   |          1 |        -81 |         -2 |         -6 |        -89 |
+| ../server/src                                                                                                                       |         66 |     -2,564 |       -168 |       -648 |     -3,380 |
+| ../server/src/main                                                                                                                  |         66 |     -2,564 |       -168 |       -648 |     -3,380 |
+| ../server/src/main/java                                                                                                             |         65 |     -2,539 |       -167 |       -645 |     -3,351 |
+| ../server/src/main/java/com                                                                                                         |         65 |     -2,539 |       -167 |       -645 |     -3,351 |
+| ../server/src/main/java/com/webox                                                                                                   |         65 |     -2,539 |       -167 |       -645 |     -3,351 |
+| ../server/src/main/java/com/webox (Files)                                                                                           |          1 |        -11 |          0 |         -4 |        -15 |
+| ../server/src/main/java/com/webox/admin                                                                                             |          1 |        -16 |         -1 |         -5 |        -22 |
+| ../server/src/main/java/com/webox/auth                                                                                              |         12 |       -313 |        -18 |        -88 |       -419 |
+| ../server/src/main/java/com/webox/auth (Files)                                                                                      |          9 |       -280 |        -17 |        -76 |       -373 |
+| ../server/src/main/java/com/webox/auth/dto                                                                                          |          3 |        -33 |         -1 |        -12 |        -46 |
+| ../server/src/main/java/com/webox/bootstrap                                                                                         |          1 |       -202 |        -10 |        -29 |       -241 |
+| ../server/src/main/java/com/webox/cart                                                                                              |          9 |       -368 |        -18 |        -89 |       -475 |
+| ../server/src/main/java/com/webox/cart (Files)                                                                                      |          4 |       -286 |        -15 |        -64 |       -365 |
+| ../server/src/main/java/com/webox/cart/dto                                                                                          |          5 |        -82 |         -3 |        -25 |       -110 |
+| ../server/src/main/java/com/webox/common                                                                                            |         16 |       -385 |        -37 |       -115 |       -537 |
+| ../server/src/main/java/com/webox/common/api                                                                                        |          4 |       -114 |        -10 |        -36 |       -160 |
+| ../server/src/main/java/com/webox/common/config                                                                                     |          3 |        -58 |        -10 |        -18 |        -86 |
+| ../server/src/main/java/com/webox/common/enums                                                                                      |          6 |       -160 |         -9 |        -43 |       -212 |
+| ../server/src/main/java/com/webox/common/money                                                                                      |          1 |        -17 |         -6 |         -8 |        -31 |
+| ../server/src/main/java/com/webox/common/option                                                                                     |          2 |        -36 |         -2 |        -10 |        -48 |
+| ../server/src/main/java/com/webox/menu                                                                                              |         14 |       -591 |        -29 |       -160 |       -780 |
+| ../server/src/main/java/com/webox/menu (Files)                                                                                      |         11 |       -505 |        -26 |       -145 |       -676 |
+| ../server/src/main/java/com/webox/menu/dto                                                                                          |          3 |        -86 |         -3 |        -15 |       -104 |
+| ../server/src/main/java/com/webox/order                                                                                             |         11 |       -653 |        -54 |       -155 |       -862 |
+| ../server/src/main/java/com/webox/order (Files)                                                                                     |          7 |       -543 |        -44 |       -131 |       -718 |
+| ../server/src/main/java/com/webox/order/dto                                                                                         |          4 |       -110 |        -10 |        -24 |       -144 |
+| ../server/src/main/resources                                                                                                        |          1 |        -25 |         -1 |         -3 |        -29 |
+| public                                                                                                                              |          2 |         25 |          0 |          1 |         26 |
+| src                                                                                                                                 |         33 |      1,474 |         60 |        176 |      1,710 |
+| src (Files)                                                                                                                         |          3 |         77 |          9 |          8 |         94 |
+| src/api                                                                                                                             |          5 |        228 |          9 |         37 |        274 |
+| src/components                                                                                                                      |          5 |        151 |          6 |         15 |        172 |
+| src/hooks                                                                                                                           |          1 |         39 |          5 |          6 |         50 |
+| src/layouts                                                                                                                         |          2 |        105 |          2 |          9 |        116 |
+| src/lib                                                                                                                             |          3 |         37 |         11 |         13 |         61 |
+| src/pages                                                                                                                           |         13 |        811 |         17 |         83 |        911 |
+| src/pages (Files)                                                                                                                   |         10 |        799 |         17 |         77 |        893 |
+| src/pages/console                                                                                                                   |          3 |         12 |          0 |          6 |         18 |
+| src/stores                                                                                                                          |          1 |         26 |          1 |          5 |         32 |
++-------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                                            | language           | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/pom.xml                                                             | XML                |        -81 |         -2 |         -6 |        -89 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/WeboxApplication.java                       | Java               |        -11 |          0 |         -4 |        -15 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/admin/AdminPingController.java              | Java               |        -16 |         -1 |         -5 |        -22 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/AuthContext.java                       | Java               |        -24 |         -2 |         -9 |        -35 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/AuthController.java                    | Java               |        -31 |         -1 |         -8 |        -40 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/AuthInterceptor.java                   | Java               |        -50 |         -4 |         -9 |        -63 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/AuthService.java                       | Java               |        -52 |         -1 |        -10 |        -63 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/AuthUser.java                          | Java               |         -4 |         -1 |         -3 |         -8 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/JwtService.java                        | Java               |        -43 |         -2 |         -8 |        -53 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/RequireRole.java                       | Java               |        -11 |         -4 |         -5 |        -20 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/User.java                              | Java               |        -58 |         -2 |        -18 |        -78 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/UserRepository.java                    | Java               |         -7 |          0 |         -6 |        -13 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/dto/AuthResponse.java                  | Java               |         -6 |          0 |         -4 |        -10 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/dto/LoginRequest.java                  | Java               |        -11 |          0 |         -4 |        -15 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/dto/RegisterRequest.java               | Java               |        -16 |         -1 |         -4 |        -21 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/bootstrap/DataSeeder.java                   | Java               |       -202 |        -10 |        -29 |       -241 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/CartController.java                    | Java               |        -46 |          0 |        -10 |        -56 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/CartItem.java                          | Java               |        -82 |         -5 |        -24 |       -111 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/CartItemRepository.java                | Java               |        -15 |          0 |         -9 |        -24 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/CartService.java                       | Java               |       -143 |        -10 |        -21 |       -174 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/dto/AddCartItemRequest.java            | Java               |        -18 |         -1 |         -8 |        -27 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/dto/AddCartItemResponse.java           | Java               |         -5 |         -1 |         -4 |        -10 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/dto/CartItemView.java                  | Java               |        -36 |         -1 |         -5 |        -42 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/dto/CartView.java                      | Java               |        -13 |          0 |         -5 |        -18 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/dto/UpdateCartItemRequest.java         | Java               |        -10 |          0 |         -3 |        -13 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/api/ApiError.java                    | Java               |        -13 |         -4 |         -6 |        -23 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/api/BizException.java                | Java               |        -27 |         -1 |         -9 |        -37 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/api/ErrorCode.java                   | Java               |        -28 |         -4 |        -10 |        -42 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/api/GlobalExceptionHandler.java      | Java               |        -46 |         -1 |        -11 |        -58 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/config/CacheConfig.java              | Java               |        -20 |         -4 |         -6 |        -30 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/config/TimeConfig.java               | Java               |        -11 |         -1 |         -5 |        -17 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/config/WebConfig.java                | Java               |        -27 |         -5 |         -7 |        -39 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/enums/Allergen.java                  | Java               |        -29 |         -4 |         -7 |        -40 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/enums/Category.java                  | Java               |        -28 |         -1 |         -7 |        -36 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/enums/MealSlot.java                  | Java               |        -24 |         -1 |         -7 |        -32 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/enums/OrderStatus.java               | Java               |        -29 |         -1 |         -8 |        -38 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/enums/Role.java                      | Java               |        -24 |         -1 |         -7 |        -32 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/enums/SpiceLevel.java                | Java               |        -26 |         -1 |         -7 |        -34 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/money/Moneys.java                    | Java               |        -17 |         -6 |         -8 |        -31 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/option/SelectedOption.java           | Java               |         -5 |         -1 |         -3 |         -9 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/option/SelectedOptionsConverter.java | Java               |        -31 |         -1 |         -7 |        -39 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/AllergenListConverter.java             | Java               |        -32 |         -4 |         -7 |        -43 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/DailyMenu.java                         | Java               |        -56 |         -4 |        -18 |        -78 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/DailyMenuRepository.java               | Java               |        -13 |          0 |         -7 |        -20 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/Dish.java                              | Java               |       -130 |         -3 |        -40 |       -173 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/DishRepository.java                    | Java               |         -4 |          0 |         -3 |         -7 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/MenuController.java                    | Java               |        -49 |         -1 |        -10 |        -60 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/MenuService.java                       | Java               |        -62 |         -2 |        -11 |        -75 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/MenuSpecs.java                         | Java               |        -36 |         -6 |         -8 |        -50 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/OptionGroup.java                       | Java               |        -67 |         -4 |        -21 |        -92 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/OptionGroupRepository.java             | Java               |        -10 |         -1 |         -5 |        -16 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/OptionItem.java                        | Java               |        -46 |         -1 |        -15 |        -62 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/dto/DishDetailView.java                | Java               |        -45 |         -1 |         -7 |        -53 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/dto/MenuItemView.java                  | Java               |        -36 |         -2 |         -5 |        -43 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/dto/MenuResponse.java                  | Java               |         -5 |          0 |         -3 |         -8 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/CheckoutController.java               | Java               |        -30 |         -1 |         -8 |        -39 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/Order.java                            | Java               |       -137 |         -7 |        -39 |       -183 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/OrderController.java                  | Java               |        -37 |          0 |        -10 |        -47 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/OrderItem.java                        | Java               |        -83 |         -5 |        -27 |       -115 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/OrderRepository.java                  | Java               |        -27 |         -1 |        -10 |        -38 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/OrderService.java                     | Java               |       -178 |        -19 |        -25 |       -222 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/OrderSlotResolver.java                | Java               |        -51 |        -11 |        -12 |        -74 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/dto/CheckoutSummaryView.java          | Java               |        -17 |         -5 |         -5 |        -27 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/dto/OrderSummaryView.java             | Java               |        -28 |         -1 |         -5 |        -34 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/dto/OrderView.java                    | Java               |        -50 |         -1 |         -7 |        -58 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/dto/PlaceOrderRequest.java            | Java               |        -15 |         -3 |         -7 |        -25 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/resources/application.yml                                  | YAML               |        -25 |         -1 |         -3 |        -29 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/.oxlintrc.json                                                         | JSON               |          8 |          0 |          1 |          9 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/README.md                                                              | Markdown           |         23 |          0 |         10 |         33 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/index.html                                                             | HTML               |         13 |          0 |          1 |         14 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/package-lock.json                                                      | JSON               |      2,485 |          0 |          1 |      2,486 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/package.json                                                           | JSON               |         32 |          0 |          1 |         33 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/public/favicon.svg                                                     | XML                |          1 |          0 |          0 |          1 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/public/icons.svg                                                       | XML                |         24 |          0 |          1 |         25 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/api/auth.ts                                                        | TypeScript         |         26 |          0 |          5 |         31 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/api/cart.ts                                                        | TypeScript         |         49 |          1 |         10 |         60 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/api/client.ts                                                      | TypeScript         |         38 |          5 |          6 |         49 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/api/menu.ts                                                        | TypeScript         |         63 |          0 |          9 |         72 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/api/orders.ts                                                      | TypeScript         |         52 |          3 |          7 |         62 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/components/AuthShell.tsx                                           | TypeScript JSX     |         17 |          1 |          2 |         20 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/components/ConfirmDialog.tsx                                       | TypeScript JSX     |         39 |          1 |          2 |         42 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/components/DishCard.tsx                                            | TypeScript JSX     |         65 |          2 |          5 |         72 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/components/PlaceholderPage.tsx                                     | TypeScript JSX     |         12 |          1 |          2 |         15 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/components/RequireAuth.tsx                                         | TypeScript JSX     |         18 |          1 |          4 |         23 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/hooks/useAddToCart.tsx                                             | TypeScript JSX     |         39 |          5 |          6 |         50 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/index.css                                                          | PostCSS            |          4 |          5 |          3 |         12 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/layouts/ConsoleLayout.tsx                                          | TypeScript JSX     |         42 |          1 |          4 |         47 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/layouts/EmployeeLayout.tsx                                         | TypeScript JSX     |         63 |          1 |          5 |         69 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/lib/errors.ts                                                      | TypeScript         |         12 |          1 |          2 |         15 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/lib/money.ts                                                       | TypeScript         |          9 |          7 |          4 |         20 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/lib/validators.ts                                                  | TypeScript         |         16 |          3 |          7 |         26 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/main.tsx                                                           | TypeScript JSX     |         20 |          0 |          3 |         23 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/CartPage.tsx                                                 | TypeScript JSX     |        116 |          1 |         12 |        129 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/CheckoutPage.tsx                                             | TypeScript JSX     |        165 |          6 |         12 |        183 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/DishDetailPage.tsx                                           | TypeScript JSX     |        156 |          6 |         12 |        174 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/LoginPage.tsx                                                | TypeScript JSX     |         95 |          0 |          7 |        102 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/MenuPage.tsx                                                 | TypeScript JSX     |         93 |          3 |         14 |        110 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/OrderDetailPage.tsx                                          | TypeScript JSX     |          4 |          0 |          2 |          6 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/OrderSuccessPage.tsx                                         | TypeScript JSX     |         51 |          1 |          6 |         58 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/OrdersPage.tsx                                               | TypeScript JSX     |          4 |          0 |          2 |          6 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/RegisterPage.tsx                                             | TypeScript JSX     |        111 |          0 |          8 |        119 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/SettingsPage.tsx                                             | TypeScript JSX     |          4 |          0 |          2 |          6 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/console/ConsoleDashboardPage.tsx                             | TypeScript JSX     |          4 |          0 |          2 |          6 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/console/ConsoleDishesPage.tsx                                | TypeScript JSX     |          4 |          0 |          2 |          6 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/console/ConsoleMenusPage.tsx                                 | TypeScript JSX     |          4 |          0 |          2 |          6 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/router.tsx                                                         | TypeScript JSX     |         53 |          4 |          2 |         59 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/stores/authStore.ts                                                | TypeScript         |         26 |          1 |          5 |         32 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/tsconfig.app.json                                                      | JSON               |         22 |          2 |          3 |         27 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/tsconfig.json                                                          | JSON with Comments |          7 |          0 |          1 |          8 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/tsconfig.node.json                                                     | JSON               |         19 |          2 |          3 |         24 |
+| /home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/vite.config.ts                                                         | TypeScript         |         12 |          3 |          2 |         17 |
+| Total                                                                                                                               |                    |      1,475 |       -103 |       -454 |        918 |
++-------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

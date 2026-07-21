@@ -157,6 +157,33 @@ public class OrderService {
         return orderRepository.findAddressHistory(userId, PageRequest.of(0, 5));
     }
 
+    @Transactional(readOnly = true)
+    public List<com.webox.order.dto.OrderSummaryView> listOrders(Long userId) {
+        return orderRepository.findByUserIdOrderByIdDesc(userId).stream()
+                .map(com.webox.order.dto.OrderSummaryView::of)
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public OrderView getOrder(Long userId, Long orderId) {
+        Order order = orderRepository.findByIdAndUserId(orderId, userId)
+                .orElseThrow(() -> new BizException(ErrorCode.NOT_FOUND, "Order not found."));
+        return OrderView.of(order);
+    }
+
+    /** Only PENDING orders can be cancelled (PRD §3.4). Stock restore is layered on in T17. */
+    @Transactional
+    public OrderView cancelOrder(Long userId, Long orderId) {
+        Order order = orderRepository.findByIdAndUserId(orderId, userId)
+                .orElseThrow(() -> new BizException(ErrorCode.NOT_FOUND, "Order not found."));
+        if (order.getStatus() != OrderStatus.PENDING) {
+            throw new BizException(ErrorCode.ORDER_NOT_CANCELLABLE);
+        }
+        order.setStatus(OrderStatus.CANCELLED);
+        orderRepository.save(order);
+        return OrderView.of(order);
+    }
+
     /** A unique-violation means a concurrent twin already committed — replay, don't fail. */
     private OrderView recoverFromRace(Long userId, PlaceOrderRequest request,
                                       OrderSlotResolver.SlotSelection slot) {

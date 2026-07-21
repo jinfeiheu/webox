@@ -4,6 +4,8 @@ import com.webox.auth.User;
 import com.webox.auth.UserRepository;
 import com.webox.common.enums.Allergen;
 import com.webox.common.enums.Category;
+import com.webox.common.enums.MealSlot;
+import com.webox.common.enums.OrderStatus;
 import com.webox.common.enums.Role;
 import com.webox.common.enums.SpiceLevel;
 import com.webox.common.money.Moneys;
@@ -13,6 +15,9 @@ import com.webox.menu.Dish;
 import com.webox.menu.DishRepository;
 import com.webox.menu.OptionGroup;
 import com.webox.menu.OptionItem;
+import com.webox.order.Order;
+import com.webox.order.OrderItem;
+import com.webox.order.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
@@ -23,6 +28,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -42,13 +49,15 @@ public class DataSeeder implements ApplicationRunner {
     private final UserRepository userRepository;
     private final DishRepository dishRepository;
     private final DailyMenuRepository dailyMenuRepository;
+    private final OrderRepository orderRepository;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public DataSeeder(UserRepository userRepository, DishRepository dishRepository,
-                      DailyMenuRepository dailyMenuRepository) {
+                      DailyMenuRepository dailyMenuRepository, OrderRepository orderRepository) {
         this.userRepository = userRepository;
         this.dishRepository = dishRepository;
         this.dailyMenuRepository = dailyMenuRepository;
+        this.orderRepository = orderRepository;
     }
 
     @Override
@@ -57,11 +66,15 @@ public class DataSeeder implements ApplicationRunner {
         seedUsers();
         List<Dish> dishes = seedDishes();
         seedDailyMenus(dishes);
+        seedHistoricalOrders(dishes);
     }
 
     private void seedUsers() {
         createUserIfAbsent("admin@webox.com", "admin1234", Role.ADMIN);
         createUserIfAbsent("demo@webox.com", "demo1234", Role.EMPLOYEE);
+        createUserIfAbsent("emp1@webox.com", "demo1234", Role.EMPLOYEE);
+        createUserIfAbsent("emp2@webox.com", "demo1234", Role.EMPLOYEE);
+        createUserIfAbsent("emp3@webox.com", "demo1234", Role.EMPLOYEE);
     }
 
     private void createUserIfAbsent(String email, String rawPassword, Role role) {
@@ -178,6 +191,90 @@ public class DataSeeder implements ApplicationRunner {
             }
             log.info("Seeded daily menu for {} ({} dishes x {} in stock)", date, dishes.size(), DAILY_STOCK);
         }
+    }
+
+    /**
+     * Historical orders spanning the last 7 days (plus a few for today), so the dashboard
+     * (T19) and AI recent-history filtering (T18) have real data from the first boot.
+     * The demo employee only gets COMPLETED/CANCELLED orders — never an active one, so the
+     * demo checkout flow stays unblocked.
+     */
+    private void seedHistoricalOrders(List<Dish> dishes) {
+        if (orderRepository.count() > 0 || dishes.isEmpty()) {
+            return;
+        }
+        LocalDate today = LocalDate.now();
+        User demo = userRepository.findByEmail("demo@webox.com").orElseThrow();
+        List<User> emps = List.of(
+                userRepository.findByEmail("emp1@webox.com").orElseThrow(),
+                userRepository.findByEmail("emp2@webox.com").orElseThrow(),
+                userRepository.findByEmail("emp3@webox.com").orElseThrow());
+
+        // Demo employee history.
+        order(demo, today.minusDays(2), MealSlot.LUNCH, OrderStatus.COMPLETED,
+                line(dishes.get(0), 1), line(dishes.get(6), 2));                       // Kung Pao + Mapo Tofu
+        order(demo, today.minusDays(1), MealSlot.LUNCH, OrderStatus.COMPLETED,
+                line(dishes.get(1), 1));                                              // Caesar Salad
+        order(demo, today.minusDays(1), MealSlot.DINNER, OrderStatus.CANCELLED,
+                line(dishes.get(4), 1));                                              // Tom Yum
+        order(demo, today, MealSlot.LUNCH, OrderStatus.COMPLETED,
+                line(dishes.get(7), 1));                                              // Bibimbap
+
+        // Rotating employee orders for dashboard volume (past 6 days).
+        for (int i = 1; i <= 6; i++) {
+            User user = emps.get(i % emps.size());
+            MealSlot slot = i % 2 == 0 ? MealSlot.LUNCH : MealSlot.DINNER;
+            order(user, today.minusDays(i), slot, OrderStatus.COMPLETED,
+                    line(dishes.get(i % dishes.size()), 1 + i % 2),
+                    line(dishes.get((i + 3) % dishes.size()), 1));
+        }
+        // Today: mixed live statuses.
+        order(emps.get(0), today, MealSlot.LUNCH, OrderStatus.CONFIRMED, line(dishes.get(8), 1));
+        order(emps.get(1), today, MealSlot.DINNER, OrderStatus.PENDING,
+                line(dishes.get(2), 1), line(dishes.get(3), 1));
+        order(emps.get(2), today, MealSlot.LUNCH, OrderStatus.CANCELLED, line(dishes.get(5), 1));
+
+        log.info("Seeded {} historical orders", orderRepository.count());
+    }
+
+    private record Line(Dish dish, int qty) {
+    }
+
+    private Line line(Dish dish, int qty) {
+        return new Line(dish, qty);
+    }
+
+    private int orderSeq;
+
+    private Order order(User user, LocalDate date, MealSlot slot, OrderStatus status, Line... lines) {
+        orderSeq++;
+        Order order = new Order();
+        order.setOrderNo("WB" + date.format(DateTimeFormatter.BASIC_ISO_DATE)
+                + "-S" + String.format("%04d", orderSeq));
+        order.setUser(user);
+        order.setDeliveryDate(date);
+        order.setMealSlot(slot);
+        order.setStatus(status);
+        order.setAddress("Building A, 3rd Floor, Desk " + (10 + orderSeq % 20));
+        order.setIdempotencyKey("SEED-" + orderSeq);
+        order.setCreatedAt(date.atTime(9, 45).atZone(ZoneId.systemDefault()).toInstant());
+
+        BigDecimal total = BigDecimal.ZERO;
+        for (Line line : lines) {
+            BigDecimal subtotal = Moneys.times(line.dish().getPrice(), line.qty());
+            OrderItem item = new OrderItem();
+            item.setOrder(order);
+            item.setDishId(line.dish().getId());
+            item.setDishName(line.dish().getName());
+            item.setUnitPrice(line.dish().getPrice());
+            item.setOptions(List.of());
+            item.setQty(line.qty());
+            item.setSubtotal(subtotal);
+            order.getItems().add(item);
+            total = total.add(subtotal);
+        }
+        order.setTotal(Moneys.of(total));
+        return orderRepository.save(order);
     }
 
     // ---- builders ----

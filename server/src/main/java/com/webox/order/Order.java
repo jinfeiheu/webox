@@ -174,4 +174,9 @@ public class Order {
     public Instant getCreatedAt() {
         return createdAt;
     }
+
+    /** Seed/demo use only — production code never backdates orders. */
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
 }

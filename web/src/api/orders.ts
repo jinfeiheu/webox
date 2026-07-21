@@ -59,3 +59,29 @@ export async function placeOrder(req: {
   const { data } = await api.post<OrderView>('/orders', req)
   return data
 }
+
+export interface OrderSummary {
+  orderId: number
+  orderNo: string
+  deliveryDate: string
+  mealSlot: string
+  totalPrice: number
+  status: string
+  createdAt: string
+  itemCount: number
+}
+
+export async function fetchOrders(): Promise<OrderSummary[]> {
+  const { data } = await api.get<OrderSummary[]>('/orders')
+  return data
+}
+
+export async function fetchOrder(orderId: number): Promise<OrderView> {
+  const { data } = await api.get<OrderView>(`/orders/${orderId}`)
+  return data
+}
+
+export async function cancelOrder(orderId: number): Promise<OrderView> {
+  const { data } = await api.post<OrderView>(`/orders/${orderId}/cancel`)
+  return data
+}

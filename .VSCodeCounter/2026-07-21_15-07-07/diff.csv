@@ -1,0 +1,113 @@
+"filename", "language", "JSON", "JSON with Comments", "XML", "TypeScript JSX", "TypeScript", "Markdown", "HTML", "PostCSS", "Java", "YAML", "comment", "blank", "total"
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/pom.xml", "XML", 0, 0, -81, 0, 0, 0, 0, 0, 0, 0, -2, -6, -89
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/WeboxApplication.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -11, 0, 0, -4, -15
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/admin/AdminPingController.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -16, 0, -1, -5, -22
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/AuthContext.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -24, 0, -2, -9, -35
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/AuthController.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -31, 0, -1, -8, -40
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/AuthInterceptor.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -50, 0, -4, -9, -63
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/AuthService.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -52, 0, -1, -10, -63
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/AuthUser.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -4, 0, -1, -3, -8
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/JwtService.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -43, 0, -2, -8, -53
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/RequireRole.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -11, 0, -4, -5, -20
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/User.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -58, 0, -2, -18, -78
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/UserRepository.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -7, 0, 0, -6, -13
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/dto/AuthResponse.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -6, 0, 0, -4, -10
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/dto/LoginRequest.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -11, 0, 0, -4, -15
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/auth/dto/RegisterRequest.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -16, 0, -1, -4, -21
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/bootstrap/DataSeeder.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -202, 0, -10, -29, -241
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/CartController.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -46, 0, 0, -10, -56
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/CartItem.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -82, 0, -5, -24, -111
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/CartItemRepository.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -15, 0, 0, -9, -24
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/CartService.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -143, 0, -10, -21, -174
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/dto/AddCartItemRequest.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -18, 0, -1, -8, -27
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/dto/AddCartItemResponse.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -5, 0, -1, -4, -10
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/dto/CartItemView.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -36, 0, -1, -5, -42
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/dto/CartView.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -13, 0, 0, -5, -18
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/cart/dto/UpdateCartItemRequest.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -10, 0, 0, -3, -13
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/api/ApiError.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -13, 0, -4, -6, -23
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/api/BizException.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -27, 0, -1, -9, -37
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/api/ErrorCode.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -28, 0, -4, -10, -42
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/api/GlobalExceptionHandler.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -46, 0, -1, -11, -58
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/config/CacheConfig.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -20, 0, -4, -6, -30
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/config/TimeConfig.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -11, 0, -1, -5, -17
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/config/WebConfig.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -27, 0, -5, -7, -39
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/enums/Allergen.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -29, 0, -4, -7, -40
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/enums/Category.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -28, 0, -1, -7, -36
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/enums/MealSlot.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -24, 0, -1, -7, -32
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/enums/OrderStatus.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -29, 0, -1, -8, -38
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/enums/Role.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -24, 0, -1, -7, -32
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/enums/SpiceLevel.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -26, 0, -1, -7, -34
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/money/Moneys.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -17, 0, -6, -8, -31
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/option/SelectedOption.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -5, 0, -1, -3, -9
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/common/option/SelectedOptionsConverter.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -31, 0, -1, -7, -39
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/AllergenListConverter.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -32, 0, -4, -7, -43
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/DailyMenu.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -56, 0, -4, -18, -78
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/DailyMenuRepository.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -13, 0, 0, -7, -20
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/Dish.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -130, 0, -3, -40, -173
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/DishRepository.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -4, 0, 0, -3, -7
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/MenuController.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -49, 0, -1, -10, -60
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/MenuService.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -62, 0, -2, -11, -75
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/MenuSpecs.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -36, 0, -6, -8, -50
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/OptionGroup.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -67, 0, -4, -21, -92
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/OptionGroupRepository.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -10, 0, -1, -5, -16
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/OptionItem.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -46, 0, -1, -15, -62
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/dto/DishDetailView.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -45, 0, -1, -7, -53
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/dto/MenuItemView.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -36, 0, -2, -5, -43
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/menu/dto/MenuResponse.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -5, 0, 0, -3, -8
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/CheckoutController.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -30, 0, -1, -8, -39
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/Order.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -137, 0, -7, -39, -183
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/OrderController.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -37, 0, 0, -10, -47
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/OrderItem.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -83, 0, -5, -27, -115
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/OrderRepository.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -27, 0, -1, -10, -38
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/OrderService.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -178, 0, -19, -25, -222
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/OrderSlotResolver.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -51, 0, -11, -12, -74
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/dto/CheckoutSummaryView.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -17, 0, -5, -5, -27
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/dto/OrderSummaryView.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -28, 0, -1, -5, -34
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/dto/OrderView.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -50, 0, -1, -7, -58
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/java/com/webox/order/dto/PlaceOrderRequest.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, -15, 0, -3, -7, -25
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/server/src/main/resources/application.yml", "YAML", 0, 0, 0, 0, 0, 0, 0, 0, 0, -25, -1, -3, -29
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/.oxlintrc.json", "JSON", 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 9
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/README.md", "Markdown", 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 10, 33
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/index.html", "HTML", 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 1, 14
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/package-lock.json", "JSON", 2485, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2486
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/package.json", "JSON", 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 33
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/public/favicon.svg", "XML", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/public/icons.svg", "XML", 0, 0, 24, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/api/auth.ts", "TypeScript", 0, 0, 0, 0, 26, 0, 0, 0, 0, 0, 0, 5, 31
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/api/cart.ts", "TypeScript", 0, 0, 0, 0, 49, 0, 0, 0, 0, 0, 1, 10, 60
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/api/client.ts", "TypeScript", 0, 0, 0, 0, 38, 0, 0, 0, 0, 0, 5, 6, 49
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/api/menu.ts", "TypeScript", 0, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 9, 72
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/api/orders.ts", "TypeScript", 0, 0, 0, 0, 52, 0, 0, 0, 0, 0, 3, 7, 62
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/components/AuthShell.tsx", "TypeScript JSX", 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 1, 2, 20
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/components/ConfirmDialog.tsx", "TypeScript JSX", 0, 0, 0, 39, 0, 0, 0, 0, 0, 0, 1, 2, 42
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/components/DishCard.tsx", "TypeScript JSX", 0, 0, 0, 65, 0, 0, 0, 0, 0, 0, 2, 5, 72
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/components/PlaceholderPage.tsx", "TypeScript JSX", 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 1, 2, 15
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/components/RequireAuth.tsx", "TypeScript JSX", 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 1, 4, 23
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/hooks/useAddToCart.tsx", "TypeScript JSX", 0, 0, 0, 39, 0, 0, 0, 0, 0, 0, 5, 6, 50
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/index.css", "PostCSS", 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 5, 3, 12
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/layouts/ConsoleLayout.tsx", "TypeScript JSX", 0, 0, 0, 42, 0, 0, 0, 0, 0, 0, 1, 4, 47
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/layouts/EmployeeLayout.tsx", "TypeScript JSX", 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 1, 5, 69
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/lib/errors.ts", "TypeScript", 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 1, 2, 15
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/lib/money.ts", "TypeScript", 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 7, 4, 20
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/lib/validators.ts", "TypeScript", 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 3, 7, 26
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/main.tsx", "TypeScript JSX", 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 3, 23
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/CartPage.tsx", "TypeScript JSX", 0, 0, 0, 116, 0, 0, 0, 0, 0, 0, 1, 12, 129
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/CheckoutPage.tsx", "TypeScript JSX", 0, 0, 0, 165, 0, 0, 0, 0, 0, 0, 6, 12, 183
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/DishDetailPage.tsx", "TypeScript JSX", 0, 0, 0, 156, 0, 0, 0, 0, 0, 0, 6, 12, 174
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/LoginPage.tsx", "TypeScript JSX", 0, 0, 0, 95, 0, 0, 0, 0, 0, 0, 0, 7, 102
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/MenuPage.tsx", "TypeScript JSX", 0, 0, 0, 93, 0, 0, 0, 0, 0, 0, 3, 14, 110
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/OrderDetailPage.tsx", "TypeScript JSX", 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 2, 6
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/OrderSuccessPage.tsx", "TypeScript JSX", 0, 0, 0, 51, 0, 0, 0, 0, 0, 0, 1, 6, 58
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/OrdersPage.tsx", "TypeScript JSX", 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 2, 6
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/RegisterPage.tsx", "TypeScript JSX", 0, 0, 0, 111, 0, 0, 0, 0, 0, 0, 0, 8, 119
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/SettingsPage.tsx", "TypeScript JSX", 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 2, 6
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/console/ConsoleDashboardPage.tsx", "TypeScript JSX", 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 2, 6
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/console/ConsoleDishesPage.tsx", "TypeScript JSX", 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 2, 6
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/pages/console/ConsoleMenusPage.tsx", "TypeScript JSX", 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 2, 6
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/router.tsx", "TypeScript JSX", 0, 0, 0, 53, 0, 0, 0, 0, 0, 0, 4, 2, 59
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/src/stores/authStore.ts", "TypeScript", 0, 0, 0, 0, 26, 0, 0, 0, 0, 0, 1, 5, 32
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/tsconfig.app.json", "JSON", 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 27
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/tsconfig.json", "JSON with Comments", 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 8
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/tsconfig.node.json", "JSON", 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 24
+"/home/jinfei/桌面/WeBox-PRD-候选人交付包./WeBox-PRD-候选人交付包/webox/web/vite.config.ts", "TypeScript", 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 3, 2, 17
+"Total", "-", 2566, 7, -56, 1179, 303, 23, 13, 4, -2539, -25, -103, -454, 918

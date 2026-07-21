@@ -1,9 +1,11 @@
 package com.webox.common.config;
 
 import com.webox.auth.AuthInterceptor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -14,9 +16,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
     private final AuthInterceptor authInterceptor;
+    private final String uploadDir;
 
-    public WebConfig(AuthInterceptor authInterceptor) {
+    public WebConfig(AuthInterceptor authInterceptor, @Value("${app.upload.dir}") String uploadDir) {
         this.authInterceptor = authInterceptor;
+        this.uploadDir = uploadDir;
     }
 
     @Override
@@ -35,4 +39,15 @@ public class WebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/api/**")
                 .excludePathPatterns("/api/auth/login", "/api/auth/register");
     }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // Serve seed images from the classpath AND runtime-uploaded images from the filesystem,
+        // both under the same /images/dishes/** URL prefix.
+        registry.addResourceHandler("/images/dishes/**")
+                .addResourceLocations("file:" + uploadDir + "/images/dishes/",
+                        "classpath:/static/images/dishes/")
+                .setCachePeriod(3600);
+    }
 }
+

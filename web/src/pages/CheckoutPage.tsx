@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { fetchAddresses, fetchCheckoutSummary, placeOrder } from '../api/orders'
+import { fetchPreferences } from '../api/preferences'
 import { formatYuan } from '../lib/money'
 import { ADDRESS_MAX } from '../lib/validators'
 
@@ -26,6 +27,10 @@ export default function CheckoutPage() {
     placeholderData: keepPreviousData,
   })
   const { data: addresses } = useQuery({ queryKey: ['addresses'], queryFn: fetchAddresses })
+  const { data: prefs } = useQuery({ queryKey: ['preferences'], queryFn: fetchPreferences })
+  // PRD §4.1: remind — never block — when the total exceeds the per-meal budget cap.
+  const overBudget =
+    prefs?.budgetMax != null && summary ? summary.totalPrice > prefs.budgetMax : false
 
   const placeMutation = useMutation({
     mutationFn: () =>
@@ -66,6 +71,13 @@ export default function CheckoutPage() {
         <div className="mb-4 rounded-md border border-blue-200 bg-blue-50 px-3 py-2 text-sm text-blue-800">
           The cutoff time for your requested slot has passed — your order was automatically
           moved to the nearest available slot: <strong>{summary.slot}</strong> on {summary.date}.
+        </div>
+      )}
+
+      {overBudget && prefs?.budgetMax != null && (
+        <div className="mb-4 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+          This order ({formatYuan(summary!.totalPrice)}) exceeds your per-meal budget cap of{' '}
+          {formatYuan(prefs.budgetMax)}. You can still place the order.
         </div>
       )}
 
